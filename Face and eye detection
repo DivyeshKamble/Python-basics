@@ -1,0 +1,49 @@
+import numpy as np
+import cv2
+
+# Use OpenCV's built-in, pre-trained Haar Cascade XML files
+face_cascade_path = cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
+eye_cascade_path = cv2.data.haarcascades + 'haarcascade_eye.xml'
+
+face_cascade = cv2.CascadeClassifier(face_cascade_path)
+eye_cascade = cv2.CascadeClassifier(eye_cascade_path)
+
+# Verify that the classifiers loaded correctly
+if face_cascade.empty() or eye_cascade.empty():
+    raise IOError("Failed to load cascade classifier XML files.")
+
+cap = cv2.VideoCapture(0)
+
+while True:
+    ret, img = cap.read()
+    
+    # Guard against camera read failures
+    if not ret or img is None:
+        print("Error: Unable to capture video frame.")
+        break
+
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+
+    for (x, y, w, h) in faces:
+        # Draw rectangle around detected face (Blue)
+        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        
+        # Region of Interest (ROI) for eye detection inside the face
+        roi_gray = gray[y:y+h, x:x+w]
+        roi_color = img[y:y+h, x:x+w]
+        
+        eyes = eye_cascade.detectMultiScale(roi_gray)
+        for (ex, ey, ew, eh) in eyes:
+            # Draw circle around detected eyes (Green)
+            cv2.circle(roi_color, (ex, ey), min(ew, eh) // 2, (0, 255, 0), 2)
+
+    cv2.imshow('Face & Eye Detection', img)
+    
+    # Exit loop when ESC key is pressed (Key code 27)
+    k = cv2.waitKey(30) & 0xFF
+    if k == 27:
+        break
+
+cap.release()
+cv2.destroyAllWindows()
