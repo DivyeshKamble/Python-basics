@@ -1,0 +1,4 @@
+#Grade check 
+Grade = ["C","D","A","A","B","B","A"]
+Grade.sort()
+print(Grade.count("A")) 
