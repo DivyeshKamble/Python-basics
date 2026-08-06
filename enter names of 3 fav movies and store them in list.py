@@ -4,8 +4,3 @@ movies.append(input("Enter your first favorite movie: "))
 movies.append(input("Enter your second favorite movie: ")) 
 movies.append(input("Enter your third favorite movie: "))
 print("Your favorite movies are: ", movies) 
-
-
-
-
-
