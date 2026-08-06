@@ -1,0 +1,27 @@
+#Inheritance
+class animal:
+    def lion():
+        print("King of da jungle")
+
+class Kids(animal):
+    def cub():
+        print("Kid of da king of da jungle")
+
+class relatives(Kids):
+    def cats():
+        print("Long distant relatives of lion")
+
+while True:
+    selection = input("Enter your choice (lion, cub, cats) or 'quit' to exit: ").strip().lower()
+
+    if selection == "lion":
+        animal.lion()
+    elif selection == "cub":
+        Kids.cub()
+    elif selection == "cats":
+        relatives.cats()
+    elif selection in ["quit", "exit", "q"]:
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice")
