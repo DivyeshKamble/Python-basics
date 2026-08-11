@@ -1,0 +1,45 @@
+#function for addition of two numbers
+'''a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+def multy(a,b):
+    return a * b
+
+print( multy(a, b))'''
+
+#function to print the list elements
+'''l2 = ["Python", "Java", "C++", "C#", "JavaScript"]
+def list_pri(list):
+    for i in list:
+        print(i, end=" ")
+
+list_pri(l2)
+print()''' 
+
+#Function to find the factorial of a number
+'''n1 = int(input("Enter a number: "))
+def list_multy(n1):
+    fact = 1
+    for i in range(1, n1+1):
+        fact *= i
+    print(fact)
+        
+list_multy(n1)'''
+
+
+# Function to convert currency from USD to INR
+'''n1 = int(input("Enter a number: "))
+def cur_ch(n1):
+    n2 = n1 * 83
+    print(f"Currency in INR: {n2}")
+    
+cur_ch(n1)'''
+
+# Function to check whether a number is even or odd
+n1 = int(input("Enter a number: "))
+def is_it(n1):
+    if n1 % 2 == 0:
+        print(f"{n1} is even")
+    else:
+        print(f"{n1} is odd")
+        
+is_it(n1)
